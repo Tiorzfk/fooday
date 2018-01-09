@@ -1,14 +1,21 @@
 var pemesanan = require('../models/pemesanan');
 var pesanMenu = require('../models/pesan_menu');
 var menu = require('../models/menu');
+var user = require('../models/user');
 var shortid = require('shortid');
 
 module.exports = {
   list: async (callback) => {
-      await pemesanan.findAll({include: [{
-        model: pesanMenu,
-        include: [menu]
-      }]}).then(data => {
+      await pemesanan.findAll(
+        {
+          include: [{
+            model: pesanMenu,
+            include: [menu]
+          },
+          {
+            model: user
+          }]
+        }).then(data => {
           callback(null,data);
       })
       .catch(err => {

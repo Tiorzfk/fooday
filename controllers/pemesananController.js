@@ -14,7 +14,7 @@ module.exports = {
       data.push(res);
     });
 
-    await ctx.render('admin/pemesanan/index.ejs',{'msg':msg, 'data' : data[0]});
+    await ctx.render('admin/pemesanan/index.ejs',{'msg' : msg, 'data' : data[0]});
   },
 
   tambah : async (ctx,next) => {
