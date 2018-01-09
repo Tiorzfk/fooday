@@ -1,5 +1,8 @@
 var menu = require('../models/menu');
 var multer = require('multer');
+var shortid = require('shortid');
+var Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 module.exports = {
   list: async (callback) => {
@@ -51,6 +54,23 @@ module.exports = {
       callback(null,res);
     })
     .catch(error => {
+      callback(error,null);
+    })
+  },
+
+  pesanMenu: async (id,callback) => {
+    await menu.findAll({
+      attributes: ['harga'],
+      where: {
+        id_menu: {
+          [Op.or]: id
+        }
+      }
+    }).then(res => {
+      callback(null,res);
+    })
+    .catch(error => {
+      console.log(error);
       callback(error,null);
     })
   }

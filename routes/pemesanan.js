@@ -14,4 +14,6 @@ module.exports = (router) => {
 
   router.get('/pemesanan/delete/:id', pemesanan.delete);
 
+  router.post('/pesan-menu', pemesanan.pesanMenu);
+
 }

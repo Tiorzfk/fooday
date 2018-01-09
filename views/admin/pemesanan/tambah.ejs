@@ -25,7 +25,7 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                  <span class="card-title"><b>Total Harga</b> : RP. 400000</span>
+                                  <span class="card-title"><b>Total Harga</b> : RP. <span id="total_harga"></span></span>
                                 </div>
                             </div>
                             <div class="row">
@@ -54,6 +54,16 @@
 
     $("#menu").change(function() {
       var id = $(this).val();
-      console.log(id);
+
+      $.ajax({
+          url: "/admin/pesan-menu",
+          method: "POST",
+          data:{id_menu:id}
+      }).done(function(data) {
+        console.log(data);
+        $("#total_harga").html(data.result);
+      }).error(function(err) {
+        console.log(err);
+      });
     });
 </script>

@@ -30,6 +30,19 @@ module.exports = {
     // ctx.body = ctx.flash('error');
   },
 
+  pesanMenu : async (ctx,next) => {
+    await menu.pesanMenu(ctx.request.body.id_menu,(err,res) => {
+      if(err)
+        ctx.body = err;
+
+      var total_harga=0;
+      res.map((data) => {
+        total_harga += data.harga;
+      });
+      ctx.body = {status:200,message:'success',result:total_harga};
+    });
+  },
+
   simpanTambah : async (ctx,next) => {
     await pemesanan.simpan(ctx.request.body, (err,res) => {
       if(err) {
