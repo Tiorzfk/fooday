@@ -40,7 +40,7 @@ var user = require('./routes/auth')(router);
 //pemesanan
 var user = require('./routes/pemesanan')(router);
 
-var port = process.env.server_port;
+var port = process.env.PORT || process.env.server_port;
 
 // BodyParser
 app.use(bodyParser());
