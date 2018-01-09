@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
+
+<link rel="stylesheet" type="text/css" href="css/profile.css">
+
+<!-- Javascript Link -->
+
+<script type="text/javascript" src="js/profile.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Home | Kantin 27</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/prettyPhoto.css" rel="stylesheet">
+    <link href="css/price-range.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet">
+  <link href="css/responsive.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->       
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+</head><!--/head-->
+
+<body>
+  <header id="header"><!--header-->
+    <div class="header_top"><!--header_top-->
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="contactinfo">
+              <ul class="nav nav-pills">
+                <li><a href=""><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
+                <li><a href=""><i class="fa fa-envelope"></i> info@domain.com</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="social-icons pull-right">
+              <ul class="nav navbar-nav">
+                <li><a href=""><i class="fa fa-facebook"></i></a></li>
+                <li><a href=""><i class="fa fa-twitter"></i></a></li>
+                <li><a href=""><i class="fa fa-linkedin"></i></a></li>
+                <li><a href=""><i class="fa fa-dribbble"></i></a></li>
+                <li><a href=""><i class="fa fa-google-plus"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!--/header_top-->
+    
+    <div class="header-middle"><!--header-middle-->
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="logo pull-left">
+              <a href="index.html"><p>LOGO Logo</p><img src="" alt="" /></a>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <div class="shop-menu pull-right">
+              <ul class="nav navbar-nav">
+                <li><a href="#"><i class="fa fa-user"></i> Akun</a></li>
+                <li><a href="#"><i class="fa fa-star"></i> Kesukaan</a></li>
+                <li><a href="#"><i class="fa fa-shopping-cart"></i> Troli</a></li>
+                <li><a href="login.html"><i class="fa fa-sign-out"></i> Keluar</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!--/header-middle-->
+
+<div class="container">
+      <div class="row">
+   
+   
+          <div class="panel panel-warning">
+            <div class="panel-heading">
+              <h3 class="panel-title">Profile Pengguna</h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-3 col-lg-3 " align="center"> 
+                  <!-- Photo Frame -->
+                  <img alt="" id="output" class="img-rounded img-responsive">
+                  <!--<img alt="" src="https://4everseomate.files.wordpress.com/2012/05/student.jpg" class="img-rounded img-responsive">-->
+                </div> 
+                
+                <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
+                  <dl>
+                    <dt>DEPARTMENT:</dt>
+                    <dd>Administrator</dd>
+                    <dt>HIRE DATE</dt>
+                    <dd>11/12/2013</dd>
+                    <dt>DATE OF BIRTH</dt>
+                       <dd>11/12/2013</dd>
+                    <dt>GENDER</dt>
+                    <dd>Male</dd>
+                  </dl>
+                </div>-->
+                <div class=" col-md-9 col-lg-9 "> 
+                  <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td>Nama Lengkap</td>
+                        <td><input type="text" class="form-control" id="usr" name="#" ></td>
+                      </tr>
+                      <tr>  
+                        <td>Email</td>
+                        <td>
+                            <!-- Type Email <a href="mailto:Qboxs@outlook.com">Qboxs@outlook.com</a></td> -->
+                        <input type="email" class="form-control" id="email" name="#">
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Jenis Kelamin</td>
+                        <td>
+                         <select class="form-control" id="se12">
+                           <option>Pria</option>
+                           <option>Wanita</option>
+                         </select>
+                        </td>
+                      <tr>
+                        <td>Tanggal Lahir</td>
+                        <td>
+                            <input type="date" class="form-control" placeholder="Date">
+                        </td>
+                      </tr>
+                      <tr>
+                          <td>Telepon</td>
+                            <td><input type="phone" class="form-control" id="email" name="#"></td>
+                      </tr>
+                      <tr>
+                          <td>Kode Pos</td>
+                          <td><input type="text" class="form-control" id="kode" name=""></td>
+                      </tr>
+                      <tr>
+                        <td>Alamat</td>
+                          <td><textarea class="form-control"></textarea></td>
+                        </td>    
+                      </tr>
+                    </tbody>
+                  </table>
+                  <!-- Button 
+                  <a href="#" class="btn btn-primary">SIMPAN</a>
+                  <a href="#" class="btn btn-primary">HAPUS</a> 
+                       Button -->
+
+                </div>
+              </div>
+            </div>
+                 <div class="panel-footer">
+                            <div class="row">
+                          <!-- Kode Photo -->
+                          <div class="upload-btn-wrapper col-sm-8">
+                            <button class="btn">Upload a file</button>
+                            <input type="file" accept="image/*" onchange="loadFile(event)">
+                              <script>
+                                var loadFile = function(event) {
+                                  var output = document.getElementById('output');
+                                  output.src = URL.createObjectURL(event.target.files[0]);
+                                };
+                              </script>
+                            </div>
+                          <!-- Kode Photo -->
+                            <div class="pull-right col-sm-3 btn-toolbar">
+                            <button type="button" class="btn btn-warning btn-lg">Simpan</button>
+                            <button type="button" class="btn btn-warning btn-lg">Batal</button>
+                          <!-- Button Edit 
+                            <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+                            <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                               Button Edit End -->
+                          </div>
+                         </div> 
+                    </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  <footer id="footer"><!--Footer-->
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="companyinfo">
+              <h2><span>Kantin</span>27</h2>
+              <p> Daftar Dan Pesan Sekarang.</p>
+            </div>
+          </div>
+
+    <div class="footer-widget">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-4 col-sm-offset-0">
+            <div class="single-widget">
+              <h2>Layanan Pelanggan</h2>
+    
+            </div>
+          </div>
+
+    <div class="footer-widget">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="single-widget letters">
+              <h2>Berlangganan Email</h2>
+              <form action="#" class="searchform">
+                <input type="text" placeholder="Email Pelanggan" />
+                <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
+                <p>Dapatkan pemberitahuan promo dengan berlangganan Email.</p>
+              </form>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="row">
+          <p class="pull-left">Copyright © 2017 FoodDay Inc. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+    
+  </footer><!--/Footer-->
