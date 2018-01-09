@@ -1,6 +1,7 @@
 var pemesanan = require('../services/pemesanan');
 var menu = require('../services/menu');
 var multer = require('multer');
+var shortid = require('shortid');
 
 module.exports = {
   index : async (ctx,next) => {
@@ -44,17 +45,31 @@ module.exports = {
   },
 
   simpanTambah : async (ctx,next) => {
-    await pemesanan.simpan(ctx.request.body, (err,res) => {
+    var id_pesan = shortid.generate();
+    var harga = ctx.request.body.harga;
+    var id_menu = ctx.request.body.id_menu.split(',');
+
+    var dataPesanMenu = [];
+    for (var i = 0; i < id_menu.length; i++) {
+      dataPesanMenu.push({id_pesan_menu:id_pesan,id_menu:id_menu[i]});
+    }
+
+    var dataPemesanan = {id_pesan:id_pesan,id_user:'2',status:'walkin',total_harga:harga};
+    await pemesanan.simpanPemesanan(dataPemesanan, (err,res) => {
       if(err) {
-        var errMsg = "";
-        err.errors.forEach((data) => {
-          errMsg += `${data.message} </br>`;
-        });
-        ctx.flash('msg', errMsg);
+        ctx.flash('msg', err);
         ctx.redirect('/admin/pemesanan/add');
       }else{
         ctx.flash('msg', 'pemesanan Berhasil Ditambahkan');
         ctx.redirect('/admin/pemesanan/add');
+      }
+    });
+
+    await pemesanan.simpanMenu(dataPesanMenu, (err,res) => {
+      if(err) {
+        ctx.body = err;
+      }else{
+        ctx.body = res;
       }
     });
 

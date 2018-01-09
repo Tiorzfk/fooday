@@ -1,12 +1,12 @@
 var Sequelize = require("sequelize");
 var database = require("../config/database");
+var pesanMenu = require("./pesan_menu");
 
 var pemesananScheme = {
     id_pesan: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        primaryKey: true,
-        autoIncrement: true
+        primaryKey: true
     },
     id_user: {
         type: Sequelize.INTEGER,
@@ -25,15 +25,16 @@ var pemesananScheme = {
         }
     },
     created_at: Sequelize.DATE,
-    updated_at: Sequelize.DATE,
-    deleted_at: Sequelize.DATE
+    updated_at: Sequelize.DATE
 };
 
 var Pemesanan = database.mysql.define("pemesanan", pemesananScheme, {
   paranoid: true,
-  underscored: true,
+  underscored: false,
   tableName: 'pemesanan',
-  timestamps: true
+  timestamps: false
 });
+
+Pemesanan.hasMany(pesanMenu, {foreignKey: 'id_pesan_menu'});
 
 module.exports = Pemesanan;

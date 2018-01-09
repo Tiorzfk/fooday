@@ -1,5 +1,6 @@
 var Sequelize = require("sequelize");
 var database = require("../config/database");
+var menu = require("./menu");
 
 var pesanMenuScheme = {
     id: {
@@ -24,5 +25,7 @@ var PesanMenu = database.mysql.define("pesan_menu", pesanMenuScheme, {
   tableName: 'pesan_menu',
   timestamps: false
 });
+
+PesanMenu.belongsTo(menu, {foreignKey: 'id_menu'});
 
 module.exports = PesanMenu;

@@ -25,6 +25,8 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
+                                  <input type="hidden" id="id_menu" name="id_menu" value="">
+                                  <input type="hidden" id="harga" name="harga" value="">
                                   <span class="card-title"><b>Total Harga</b> : RP. <span id="total_harga"></span></span>
                                 </div>
                             </div>
@@ -54,7 +56,7 @@
 
     $("#menu").change(function() {
       var id = $(this).val();
-
+      console.log({id_menu:id});
       $.ajax({
           url: "/admin/pesan-menu",
           method: "POST",
@@ -62,6 +64,8 @@
       }).done(function(data) {
         console.log(data);
         $("#total_harga").html(data.result);
+        $("#id_menu").val(id);
+        $("#harga").val(data.result);
       }).error(function(err) {
         console.log(err);
       });

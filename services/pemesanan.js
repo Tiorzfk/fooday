@@ -1,9 +1,14 @@
 var pemesanan = require('../models/pemesanan');
+var pesanMenu = require('../models/pesan_menu');
+var menu = require('../models/menu');
+var shortid = require('shortid');
 
 module.exports = {
   list: async (callback) => {
-      await pemesanan.findAll().then(data => {
-        console.log(data);
+      await pemesanan.findAll({include: [{
+        model: pesanMenu,
+        include: [menu]
+      }]}).then(data => {
           callback(null,data);
       })
       .catch(err => {
@@ -11,7 +16,16 @@ module.exports = {
       });
   },
 
-  simpan: async (data,callback) => {
+  simpanMenu: async (data,callback) => {
+    await pesanMenu.bulkCreate(data).then(res => {
+      callback(null,res);
+    })
+    .catch(error => {
+        callback(error,null);
+    });
+  },
+
+  simpanPemesanan: async (data,callback) => {
     await pemesanan.create(data).then(res => {
       callback(null,res);
     })

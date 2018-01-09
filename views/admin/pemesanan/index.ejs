@@ -39,10 +39,13 @@
                         <% data.forEach(function(data) { %>
                           <tr>
                               <td>nama</td>
-                              <td>menu</td>
-                              <td><%= data.harga %></td>
+                              <td><ul><% data.pesan_menus.forEach(function(item) { %>
+                                  <li><%=item.menu.nama%></li>
+                              <% }) %>
+                              </ul></td>
+                              <td><%= data.total_harga %></td>
                               <td><%= data.status %></td>
-                              <td><%= data.created_at %></td>
+                              <td></td>
                               <td><a onclick="return confirm('Apakah Anda Yakin ?')" href="/admin/menu/delete/<%=data.id_pemesanan%>" class="waves-effect waves-light btn pink m-b-xs"> Hapus </a></td>
                           </tr>
                         <% }); %>
