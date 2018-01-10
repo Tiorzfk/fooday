@@ -32,6 +32,19 @@ module.exports = {
     });
   },
 
+  findKategori: async (kategori,callback) => {
+    await menu.findAll({
+      where: {
+        jenis_menu: kategori
+      }
+    }).then(res => {
+      callback(null,res);
+    })
+    .catch(error => {
+      callback(error,null);
+    });
+  },
+
   simpanEdit: async (data,callback) => {
     await menu.update(data,{
       where: {

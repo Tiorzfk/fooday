@@ -17,8 +17,8 @@ var router = new Router({
   prefix: '/admin'
 });
 
-var routerFront = new Router({
-  prefix: '/'
+var routerPage = new Router({
+  prefix: ''
 });
 
 var compress = require('koa-compress');
@@ -40,7 +40,12 @@ var user = require('./routes/auth')(router);
 //pemesanan
 var user = require('./routes/pemesanan')(router);
 
-var port = process.env.PORT || process.env.server_port;
+
+//API Menu
+require('./routes/page/menu')(routerPage);
+require('./routes/page/auth')(routerPage);
+
+var port = '8000';
 
 // BodyParser
 app.use(bodyParser());
@@ -59,12 +64,9 @@ app.use(logger());
 app
   .use(router.routes())
   .use(router.allowedMethods())
-  .use(routerFront.routes())
-  .use(routerFront.allowedMethods());
+  .use(routerPage.routes())
+  .use(routerPage.allowedMethods());
 
-  routerFront.get('menu/cart', function *() {
-    app.use(serve(path.join(__dirname, 'public')));
-  });
 // Serve static files
 app.use(serve(path.join(__dirname, 'public')));
 

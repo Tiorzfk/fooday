@@ -17,6 +17,10 @@ module.exports = {
     await ctx.render('admin/pemesanan/index.ejs',{'msg' : msg, 'data' : data[0]});
   },
 
+  detail : async (ctx,next) => {
+    await ctx.render('admin/pemesanan/detail.ejs');
+  },
+
   tambah : async (ctx,next) => {
     var msg = ctx.flash('msg') || '';
     var dataMenu = [];

@@ -44,6 +44,13 @@ var userScheme = {
         validate : {
           notEmpty: {args:true,msg:'Anda belum memilih jenis menu.'}
         }
+    },
+    foto: {
+        type: Sequelize.STRING(15),
+        allowNull: false,
+        validate : {
+          notEmpty: {args:true,msg:'Foto tidak boleh kosong.'}
+        }
     }
 };
 
