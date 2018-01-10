@@ -1,6 +1,7 @@
 var Sequelize = require("sequelize");
 var database = require("../config/database");
 var pesanMenu = require("./pesan_menu");
+var pemesananOnline = require("./pemesanan_online");
 var user = require("./user");
 
 var pemesananScheme = {
@@ -38,5 +39,6 @@ var Pemesanan = database.mysql.define("pemesanan", pemesananScheme, {
 
 Pemesanan.hasMany(pesanMenu, {foreignKey: 'id_pesan_menu'});
 Pemesanan.belongsTo(user, {foreignKey: 'id_user'});
+Pemesanan.hasOne(pemesananOnline, {foreignKey: 'id_pesan'});
 
 module.exports = Pemesanan;

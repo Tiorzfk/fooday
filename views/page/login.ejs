@@ -81,9 +81,9 @@
 					<div class="login-form"><!--login form-->
 						<h2>Masuk Pengguna</h2>
 						<form action="#">
-							<input type="text" placeholder="Email" />
-							<input type="email" placeholder="Kata Sandi" />
-							<button type="submit" class="btn btn-default">Masuk</button>
+							<input type="text" id="usernameInput" placeholder="Username" name="username" />
+							<input type="password" id="passwordInput" placeholder="Kata Sandi" name="password" />
+							<button type="button" id="masuk" class="btn btn-default">Masuk</button>
 						</form>
 					</div><!--/login form-->
 				</div>
@@ -166,5 +166,42 @@
 	  <script src="/frontend/js/bootstrap.min.js"></script>
     <script src="/frontend/js/jquery.prettyPhoto.js"></script>
     <script src="/frontend/js/main.js"></script>
+    <script type="text/javascript">
+
+     $(document).ready(function() {
+
+
+     }).on('click','#masuk', function() {
+       var username = $("#usernameInput").val();
+       var password = $("#passwordInput").val();
+
+       var data = {
+         username : username,
+         password : password
+       };
+
+       $.ajax({
+           method : 'POST',
+           url : '/login',
+           data : data
+       }).done(function(response){
+         console.log(response.message);
+         switch (response.status) {
+           case 200:
+               localStorage.setItem('dataLogin',JSON.stringify(response.result))
+               window.location.replace("/menu");
+             break;
+           case 400:
+               alert(response.msg);
+             break;
+           default:
+
+         }
+       }).error(function(response){
+         console.log(response);
+       })
+     });
+
+    </script>
 </body>
 </html>

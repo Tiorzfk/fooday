@@ -1,5 +1,6 @@
 var pemesanan = require('../models/pemesanan');
 var pesanMenu = require('../models/pesan_menu');
+var pesanOnline = require('../models/pemesanan_online');
 var menu = require('../models/menu');
 var user = require('../models/user');
 var shortid = require('shortid');
@@ -41,8 +42,49 @@ module.exports = {
     });
   },
 
+  simpanPemesananOnline: async (data,callback) => {
+    await pemesanan.create(data).then(res => {
+      callback(null,res);
+    })
+    .catch(error => {
+        callback(error,null);
+    });
+  },
+
+  simpanPesanOnline: async (data,callback) => {
+    await pesanOnline.create(data).then(res => {
+      callback(null,res);
+    })
+    .catch(error => {
+        callback(error,null);
+    });
+  },
+
   find: async (id,callback) => {
     await pemesanan.findById(id).then(res => {
+      callback(null,res);
+    })
+    .catch(error => {
+      callback(error,null);
+    });
+  },
+
+  findPemesanan: async (id,callback) => {
+    await pemesanan.findAll({
+      where: {
+        id_user: id
+      },
+        include: [{
+          model: pesanMenu,
+          include: [menu]
+        },
+        {
+          model: user
+        },
+        {
+          model: pesanOnline
+        }]
+    }).then(res => {
       callback(null,res);
     })
     .catch(error => {

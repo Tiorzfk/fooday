@@ -63,10 +63,10 @@
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
-								<li><a href="#"><i class="fa fa-user"></i> Akun</a></li>
+								<li><a href="/me"><i class="fa fa-user"></i> Akun</a></li>
 								<li><a href="#"><i class="fa fa-star"></i> Kesukaan</a></li>
-								<li><a href="/menu/cart"><i class="fa fa-shopping-cart"></i> Troli</a></li>
-								<li><a href="login.html"><i class="fa fa-sign-out"></i> Keluar</a></li>
+								<li><a href="/cart"><i class="fa fa-shopping-cart"></i> Troli</a></li>
+								<li><a href="/logout"><i class="fa fa-sign-out"></i> Keluar</a></li>
 							</ul>
 						</div>
 					</div>
@@ -126,7 +126,7 @@
   											<img src="/frontend/images/<%=data.foto%>" alt="" class="item-frame" />
   											<h2>Rp <%=data.harga%></h2>
   											<p><%=data.nama%></p>
-  											<a id="add" class="btn btn-default add-to-cart" id_menu="<%=data.id_menu%>" nama_menu="<%=data.nama%>"><i class="fa fa-plus-square"></i>Tambah Ke Troli</a>
+  											<a id="add" class="btn btn-default add-to-cart" harga_menu="<%=data.harga%>" id_menu="<%=data.id_menu%>" nama_menu="<%=data.nama%>"><i class="fa fa-plus-square"></i>Tambah Ke Troli</a>
   										</div>
   								</div>
   							</div>
@@ -151,7 +151,7 @@
   												<img src="/frontend/images/<%=data.foto%>" alt="" class="item-frame-2" />
   												<h2>Rp <%=data.harga%></h2>
   												<p><%=data.nama%></p>
-  												<a id="add" class="btn btn-default add-to-cart" data="<%=data.id_menu%>"><i class="fa fa-plus-square"></i>Tambah Ke Troli</a>
+  												<a id="add" class="btn btn-default add-to-cart" harga_menu="<%=data.harga%>" data="<%=data.id_menu%>"><i class="fa fa-plus-square"></i>Tambah Ke Troli</a>
   											</div>
 
   										</div>
@@ -231,6 +231,24 @@
       }).on('click','#add',function() {
         var id = $(this).attr('id_menu');
         var nama = $(this).attr('nama_menu');
+        var harga = $(this).attr('harga_menu');
+
+        var dataMenu = {
+          id_menu : id,
+          nama : nama,
+          harga : harga,
+          jumlah : 1
+        };
+        var historyDataPesan = sessionStorage.getItem('historyDataPesan');
+        if(historyDataPesan) {
+          // console.log(dataPesan);
+          historyDataPesanJson = JSON.parse(historyDataPesan);
+          historyDataPesanJson.push(dataMenu);
+
+          sessionStorage.setItem('historyDataPesan',JSON.stringify(historyDataPesanJson));
+        }else{
+          sessionStorage.setItem('historyDataPesan',JSON.stringify([dataMenu]));
+        }
 
         var dataPesan = sessionStorage.getItem('dataPesan');
         if(dataPesan) {
@@ -243,6 +261,7 @@
           sessionStorage.setItem('dataPesan',JSON.stringify([id]));
         }
 
+        alert('Anda berhasil menambahkan menu ke pesanan');
         console.log(dataPesan);
       });
     </script>

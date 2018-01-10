@@ -1,42 +1,33 @@
 var Sequelize = require("sequelize");
 var database = require("../config/database");
-var pesanMenu = require("./pesan_menu");
-var user = require("./user");
 
-var pemesananScheme = {
+var pemesananOnlineScheme = {
+    id_penjualan: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true
+    },
     id_pesan: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        primaryKey: true
     },
-    id_user: {
+    id_driver: {
         type: Sequelize.INTEGER,
         allowNull: false,
     },
     status: {
         type: Sequelize.ENUM,
-        values: ['walkin','online'],
+        values: ['ongoing','success'],
         allowNull: false
-    },
-    total_harga: {
-        type: Sequelize.DOUBLE,
-        allowNull: false,
-        validate : {
-          notEmpty: {args:true,msg:'Harga tidak boleh kosong.'}
-        }
-    },
-    created_at: Sequelize.DATE,
-    updated_at: Sequelize.DATE
+    }
 };
 
-var Pemesanan = database.mysql.define("pemesanan", pemesananScheme, {
+var PemesananOnline = database.mysql.define("pemesanan_online", pemesananOnlineScheme, {
   paranoid: true,
   underscored: false,
-  tableName: 'pemesanan',
+  tableName: 'pemesanan_online',
   timestamps: false
 });
 
-Pemesanan.hasMany(pesanMenu, {foreignKey: 'id_pesan_menu'});
-Pemesanan.belongsTo(user, {foreignKey: 'id_user'});
-
-module.exports = Pemesanan;
+module.exports = PemesananOnline;

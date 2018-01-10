@@ -6,22 +6,22 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Cart | Kantin 27</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/prettyPhoto.css" rel="stylesheet">
-    <link href="css/price-range.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
-	<link href="css/main.css" rel="stylesheet">
-	<link href="css/responsive.css" rel="stylesheet">
+    <link href="/frontend/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/frontend/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/frontend/css/prettyPhoto.css" rel="stylesheet">
+    <link href="/frontend/css/price-range.css" rel="stylesheet">
+    <link href="/frontend/css/animate.css" rel="stylesheet">
+	<link href="/frontend/css/main2.css" rel="stylesheet">
+	<link href="/frontend/css/responsive.css" rel="stylesheet">
     <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->       
-    <link rel="shortcut icon" href="images/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+    <script src="/frontend/js/html5shiv.js"></script>
+    <script src="/frontend/js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="/frontend/images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/frontend/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/frontend/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/frontend/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/frontend/images/ico/apple-touch-icon-57-precomposed.png">
 </head><!--/head-->
 
 <body>
@@ -51,7 +51,7 @@
 				</div>
 			</div>
 		</div><!--/header_top-->
-		
+
 		<div class="header-middle"><!--header-middle-->
 			<div class="container">
 				<div class="row">
@@ -63,10 +63,10 @@
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
-								<li><a href="#"><i class="fa fa-user"></i> Akun</a></li>
+								<li><a href="/me"><i class="fa fa-user"></i> Akun</a></li>
 								<li><a href="#"><i class="fa fa-star"></i> Kesukaan</a></li>
-								<li><a href="#"><i class="fa fa-shopping-cart"></i> Troli</a></li>
-								<li><a href="login.html"><i class="fa fa-sign-out"></i> Keluar</a></li>
+								<li><a href="/cart"><i class="fa fa-shopping-cart"></i> Troli</a></li>
+								<li><a href="/logout"><i class="fa fa-sign-out"></i> Keluar</a></li>
 							</ul>
 						</div>
 					</div>
@@ -82,66 +82,15 @@
 				<table class="table table-condensed">
 					<thead>
 						<tr class="cart_menu">
-							<td class="image">Item</td>
-							<td class="description"></td>
-							<td class="price">Price</td>
-							<td class="quantity">Quantity</td>
-							<td class="total">Total</td>
+							<td class="image">Menu</td>
+							<td class="price">Harga</td>
+							<td class="quantity">Jumlah</td>
+							<td class="total">Sub Total</td>
 							<td></td>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody id="cart">
 
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="images/cart/two.png" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>Rp 70.000</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">Rp 70.000</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="images/cart/three.png" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>Rp 40.000</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$Rp 40.000</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
 					</tbody>
 				</table>
 			</div>
@@ -152,7 +101,7 @@
 		<div class="container">
 			<div class="heading">
 				<h3>Informasi Pembelian Dan Pengiriman</h3>
-				<p>Isi data pengiriman sesuai lokasi. Pembeli dapat menggunakan kode promo yang di dapatkan melalui email dari Kantin27.</p>
+				<p>Isi data pengiriman sesuai lokasi.</p>
 			</div>
 			<div class="row">
 				<div class="col-sm-6">
@@ -166,34 +115,19 @@
 							</li>
 						</ul>
 						<ul class="user_info">
-							<li class="single_field">
-								<label>Alamat </label>
-								<select>
-									<option>Bandung</option>
-									<option>Lainnya</option>
-								</select>
-								
-							</li>
-						
-							<li class="single_field zip-field">
-								<label>Kode Promo</label>
-								<input type="text">
-							</li>
+              <p id="alamat">Jln.Citepus 3 no.38 RT/RW 10/10 Kelurahan Pajajaran Kecamatan Cicendo Kota Bandung</p>
 						</ul>
 						<a class="btn btn-default update" href="">Ganti Alamat</a>
-						<a class="btn btn-default check_out" href="">Gunakan Kode</a>
 					</div>
 				</div>
 				<div class="col-sm-6">
 					<div class="total_area">
 						<ul>
-							<li>Total Pembelian <span>Rp 70000</span></li>
-							<li>Pajak <span>Rp 1300</span></li>
 							<li>Biaya Pengiriman <span>Gratis</span></li>
-							<li>Total Pembayaran <span>Rp 70.1300</span></li>
+							<li>Total Pembayaran <span id="total_pembayaran">Rp 70.1300</span></li>
 						</ul>
 							<a class="btn btn-default update" href="">Lainnya</a>
-							<a class="btn btn-default check_out" href="">Bayar</a>
+							<a id="bayar" class="btn btn-default check_out">Bayar</a>
 					</div>
 				</div>
 			</div>
@@ -237,11 +171,11 @@
 							</form>
 						</div>
 					</div>
-					
+
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="footer-bottom">
 			<div class="container">
 				<div class="row">
@@ -250,13 +184,75 @@
 			</div>
 		</div>
 	</footer><!--/Footer-->
-	
 
 
-    <script src="js/jquery.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.scrollUp.min.js"></script>
-    <script src="js/jquery.prettyPhoto.js"></script>
-    <script src="js/main.js"></script>
+
+    <script src="/frontend/js/jquery.js"></script>
+    <script src="/frontend/js/bootstrap.min.js"></script>
+	  <script src="/frontend/js/jquery.scrollUp.min.js"></script>
+    <script src="/frontend/js/jquery.prettyPhoto.js"></script>
+    <script src="/frontend/js/main.js"></script>
+    <script type="text/javascript">
+      var dataLogin = localStorage.getItem('dataLogin');
+      if(!dataLogin) {
+          window.location.href = '/login';
+      }
+
+      var dataPesan = sessionStorage.getItem('historyDataPesan');
+      var dataPesanJson = JSON.parse(dataPesan);
+      var data = ``;
+      var total = 0;
+      dataPesanJson.forEach(function(item) {
+        var subtotal = item.harga * item.jumlah;
+        total += subtotal;
+        data += `<tr>
+          <td class="cart_product">
+            <a href="">${item.nama}</a>
+          </td>
+          <td class="cart_price">
+            <p>Rp ${item.harga}</p>
+          </td>
+          <td class="cart_quantity">
+            <div class="cart_quantity_button">
+              <a class="cart_quantity_up" href=""> + </a>
+              <input class="cart_quantity_input" type="text" name="quantity" value="${item.jumlah}" autocomplete="off" size="2">
+              <a class="cart_quantity_down" href=""> - </a>
+            </div>
+          </td>
+          <td class="cart_total">
+            <p class="cart_total_price" id="subtotal">Rp ${subtotal}</p>
+          </td>
+          <td class="cart_delete">
+            <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+          </td>
+        </tr>`;
+      });
+
+      $("#cart").html(data);
+
+      $("#total_pembayaran").html(`Rp. ${total}`);
+
+      $("#bayar").click(function() {
+        var id_menu = sessionStorage.getItem('dataPesan');;
+        var historyDataPesan = sessionStorage.getItem('historyDataPesan');
+
+        var data = {
+          id_menu : id_menu,
+          total_harga : total
+        };
+
+        $.ajax({
+            method : 'POST',
+            url : '/pesan/online',
+            data : data
+        }).done(function(response){
+          window.location.href = '/me';
+
+        }).error(function(response){
+          console.log(response);
+        })
+        console.log('asd');
+      });
+    </script>
 </body>
 </html>
