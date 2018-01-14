@@ -57,7 +57,7 @@ module.exports = (router) => {
 
     var dataPesanMenu = [];
     for (var i = 0; i < id_menu.length; i++) {
-      dataPesanMenu.push({id_pesan_menu:id_pesan,id_menu:id_menu[i]});
+      dataPesanMenu.push({id_pesan_menu:id_pesan,id_menu:id_menu[i].id,jumlah:id_menu[i].jumlah});
     }
 
     console.log(dataPesanMenu);

@@ -3,6 +3,7 @@ var multer = require('multer');
 
 module.exports = {
   index : async (ctx,next) => {
+    var dataLogin = ctx.session.dataLogin;
     var data = [];
     await user.list((err,res) => {
       if(err)
@@ -11,10 +12,11 @@ module.exports = {
       data.push(res);
     });
 
-    await ctx.render('admin/user/index.ejs',{'data' : data[0]});
+    await ctx.render('admin/user/index.ejs',{'dataLogin':dataLogin,'data' : data[0]});
   },
 
   edit : async (ctx,next) => {
+    var dataLogin = ctx.session.dataLogin;
     var msg = ctx.flash('msg') || '';
     var data = [];
     await user.find(ctx.params.id, (err,res) => {
@@ -26,7 +28,7 @@ module.exports = {
       }
     });
 
-    await ctx.render('admin/user/edit.ejs',{'msg': msg, 'data' : data[0]});
+    await ctx.render('admin/user/edit.ejs',{'dataLogin':dataLogin,'msg': msg, 'data' : data[0]});
   },
 
   simpanEdit : async (ctx,next) => {

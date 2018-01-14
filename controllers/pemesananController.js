@@ -5,6 +5,8 @@ var shortid = require('shortid');
 
 module.exports = {
   index : async (ctx,next) => {
+    var moment = require('moment');
+    var dataLogin = ctx.session.dataLogin;
     var msg = ctx.flash('msg') || '';
     var data = [];
     await pemesanan.list((err,res) => {
@@ -14,14 +16,16 @@ module.exports = {
       data.push(res);
     });
 
-    await ctx.render('admin/pemesanan/index.ejs',{'msg' : msg, 'data' : data[0]});
+    await ctx.render('admin/pemesanan/index.ejs',{'moment':moment,'dataLogin':dataLogin,'msg' : msg, 'data' : data[0]});
   },
 
   detail : async (ctx,next) => {
-    await ctx.render('admin/pemesanan/detail.ejs');
+    var dataLogin = ctx.session.dataLogin;
+    await ctx.render('admin/pemesanan/detail.ejs',{'dataLogin':dataLogin});
   },
 
   tambah : async (ctx,next) => {
+    var dataLogin = ctx.session.dataLogin;
     var msg = ctx.flash('msg') || '';
     var dataMenu = [];
     await menu.list((err,res) => {
@@ -31,7 +35,7 @@ module.exports = {
       dataMenu.push(res);
     });
 
-    await ctx.render('admin/pemesanan/tambah.ejs',{'msg' : msg, 'menu' : dataMenu[0]});
+    await ctx.render('admin/pemesanan/tambah.ejs',{'dataLogin':dataLogin,'msg' : msg, 'menu' : dataMenu[0]});
     // ctx.body = ctx.flash('error');
   },
 
@@ -81,6 +85,7 @@ module.exports = {
   },
 
   edit : async (ctx,next) => {
+    var dataLogin = ctx.session.dataLogin;
     var msg = ctx.flash('msg') || '';
     var data = [];
     await pemesanan.find(ctx.params.id, (err,res) => {
@@ -92,7 +97,7 @@ module.exports = {
       }
     });
 
-    await ctx.render('admin/pemesanan/edit.ejs',{'msg': msg, 'data' : data[0]});
+    await ctx.render('admin/pemesanan/edit.ejs',{'dataLogin':dataLogin,'msg': msg, 'data' : data[0]});
   },
 
   simpanEdit : async (ctx,next) => {

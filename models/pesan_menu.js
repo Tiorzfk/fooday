@@ -16,6 +16,14 @@ var pesanMenuScheme = {
     id_menu: {
       type: Sequelize.INTEGER,
       allowNull: false,
+    },
+    jumlah: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      validate : {
+        notEmpty: {args:true,msg:'Jumlah tidak boleh kosong.'},
+        max: {args:true,msg:'Jumlah tidak boleh kosong.'}
+      }
     }
 };
 

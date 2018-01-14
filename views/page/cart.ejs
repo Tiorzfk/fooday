@@ -1,78 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Cart | Kantin 27</title>
-    <link href="/frontend/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/frontend/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/frontend/css/prettyPhoto.css" rel="stylesheet">
-    <link href="/frontend/css/price-range.css" rel="stylesheet">
-    <link href="/frontend/css/animate.css" rel="stylesheet">
-	<link href="/frontend/css/main2.css" rel="stylesheet">
-	<link href="/frontend/css/responsive.css" rel="stylesheet">
-    <!--[if lt IE 9]>
-    <script src="/frontend/js/html5shiv.js"></script>
-    <script src="/frontend/js/respond.min.js"></script>
-    <![endif]-->
-    <link rel="shortcut icon" href="/frontend/images/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/frontend/images/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/frontend/images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/frontend/images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="/frontend/images/ico/apple-touch-icon-57-precomposed.png">
-</head><!--/head-->
-
-<body>
-	<header id="header"><!--header-->
-		<div class="header_top"><!--header_top-->
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="contactinfo">
-							<ul class="nav nav-pills">
-								<li><a href=""><i class="fa fa-phone"></i> +6282771882122</a></li>
-								<li><a href=""><i class="fa fa-envelope"></i> Info@kantin27.com</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="social-icons pull-right">
-							<ul class="nav navbar-nav">
-								<li><a href=""><i class="fa fa-facebook"></i></a></li>
-								<li><a href=""><i class="fa fa-twitter"></i></a></li>
-								<li><a href=""><i class="fa fa-linkedin"></i></a></li>
-								<li><a href=""><i class="fa fa-dribbble"></i></a></li>
-								<li><a href=""><i class="fa fa-google-plus"></i></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!--/header_top-->
-
-		<div class="header-middle"><!--header-middle-->
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-4">
-						<div class="logo pull-left">
-							<a href="index.html"><p>LOGO Logo</p><img src="" alt="" /></a>
-						</div>
-					</div>
-					<div class="col-sm-8">
-						<div class="shop-menu pull-right">
-							<ul class="nav navbar-nav">
-								<li><a href="/me"><i class="fa fa-user"></i> Akun</a></li>
-								<li><a href="#"><i class="fa fa-star"></i> Kesukaan</a></li>
-								<li><a href="/cart"><i class="fa fa-shopping-cart"></i> Troli</a></li>
-								<li><a href="/logout"><i class="fa fa-sign-out"></i> Keluar</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!--/header-middle-->
+<% include ./partials/header %>
 
 	<section id="cart_items">
 		<div class="container">
@@ -186,12 +112,9 @@
 	</footer><!--/Footer-->
 
 
-
-    <script src="/frontend/js/jquery.js"></script>
     <script src="/frontend/js/bootstrap.min.js"></script>
 	  <script src="/frontend/js/jquery.scrollUp.min.js"></script>
     <script src="/frontend/js/jquery.prettyPhoto.js"></script>
-    <script src="/frontend/js/main.js"></script>
     <script type="text/javascript">
       var dataLogin = localStorage.getItem('dataLogin');
       if(!dataLogin) {
@@ -202,7 +125,7 @@
       var dataPesanJson = JSON.parse(dataPesan);
       var data = ``;
       var total = 0;
-      dataPesanJson.forEach(function(item) {
+      dataPesanJson.forEach(function(item,index) {
         var subtotal = item.harga * item.jumlah;
         total += subtotal;
         data += `<tr>
@@ -215,7 +138,7 @@
           <td class="cart_quantity">
             <div class="cart_quantity_button">
               <a class="cart_quantity_up" href=""> + </a>
-              <input class="cart_quantity_input" type="text" name="quantity" value="${item.jumlah}" autocomplete="off" size="2">
+              <input class="cart_quantity_input" index="${index}" id="jml${index}" type="number" style="width:50px" name="quantity" value="${item.jumlah}" autocomplete="off" size="2">
               <a class="cart_quantity_down" href=""> - </a>
             </div>
           </td>
@@ -223,7 +146,7 @@
             <p class="cart_total_price" id="subtotal">Rp ${subtotal}</p>
           </td>
           <td class="cart_delete">
-            <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+            <a class="cart_quantity_delete" id="deleteItem" index="${index}" data="${item.id_menu}"><i class="fa fa-times"></i></a>
           </td>
         </tr>`;
       });
@@ -246,6 +169,8 @@
             url : '/pesan/online',
             data : data
         }).done(function(response){
+
+          sessionStorage.clear();
           window.location.href = '/me';
 
         }).error(function(response){
@@ -253,6 +178,63 @@
         })
         console.log('asd');
       });
+
+      $(document).ready(function() {
+
+      }).on('click','#deleteItem', function() {
+        var isGood = confirm('Apakah anda yakin ?');
+        if(isGood) {
+					var id = $(this).attr('data');
+					var index = $(this).attr('index');
+          var dataHistory = sessionStorage.getItem('historyDataPesan');
+					var dataHistoryJson = JSON.parse(dataHistory);
+          console.log(dataHistoryJson);
+					dataHistoryJson = jQuery.grep(dataHistoryJson, function(key,value) {
+					  return value != index;
+					});
+
+					sessionStorage.setItem('historyDataPesan',JSON.stringify(dataHistoryJson));
+
+					var dataPesanHistory = sessionStorage.getItem('dataPesan');
+					var dataPesanHistoryJson = JSON.parse(dataPesanHistory);
+          console.log(dataHistoryJson);
+					dataPesanHistoryJson = jQuery.grep(dataPesanHistoryJson, function(key,value) {
+					  return value != index;
+					});
+
+					sessionStorage.setItem('dataPesan',JSON.stringify(dataPesanHistoryJson));
+
+					window.location.href = '/cart';
+					// console.log(dataHistoryJson);
+        }
+      }).on('change','.cart_quantity_input', function() {
+				var index = $(this).attr('index');
+				var jml = $(`#jml${index}`).val();
+				// console.log(jml);
+				var dataHistory = sessionStorage.getItem('historyDataPesan');
+				var dataHistoryJson = JSON.parse(dataHistory);
+				dataHistoryJson = jQuery.grep(dataHistoryJson, function(key,value) {
+					if(value == index){
+						console.log(jml);
+						key.jumlah = jml;
+					}
+					return key;
+				});
+				sessionStorage.setItem('historyDataPesan',JSON.stringify(dataHistoryJson));
+
+				var dataPesanHistory = sessionStorage.getItem('dataPesan');
+				var dataPesanHistoryJson = JSON.parse(dataPesanHistory);
+				console.log(dataHistoryJson);
+				dataPesanHistoryJson = jQuery.grep(dataPesanHistoryJson, function(key,value) {
+					if(value == index){
+						console.log(jml);
+						key.jumlah = jml;
+					}
+					return key;
+				});
+
+				sessionStorage.setItem('dataPesan',JSON.stringify(dataPesanHistoryJson));
+			});
     </script>
 </body>
 </html>

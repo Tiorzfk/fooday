@@ -31,6 +31,13 @@ app.use(views(__dirname + '/views', {
   }
 }));
 
+// app.use(function(ctx,next) {
+//   if(!ctx.session) {
+//     ctx.redirect('/admin/login');
+//     next();
+//   }
+// });
+
 //routes
 var menu = require('./routes/menu')(router);
 //user
@@ -45,7 +52,7 @@ var user = require('./routes/pemesanan')(router);
 require('./routes/page/menu')(routerPage);
 require('./routes/page/auth')(routerPage);
 
-var port = '8000';
+var port = '8000' || process.env.PORT;
 
 // BodyParser
 app.use(bodyParser());
