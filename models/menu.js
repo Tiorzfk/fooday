@@ -19,14 +19,16 @@ var userScheme = {
         type: Sequelize.DOUBLE,
         allowNull: false,
         validate : {
-          notEmpty: {args:true,msg:'Harga tidak boleh kosong.'}
+          notEmpty: {args:true,msg:'Harga tidak boleh kosong.'},
+          isNumeric: {args:true,msg:'Harga harus berupa angka.'}
         }
     },
     stok: {
         type: Sequelize.INTEGER(10),
         allowNull: false,
         validate : {
-          notEmpty: {args:true,msg:'Stok tidak boleh kosong.'}
+          notEmpty: {args:true,msg:'Stok tidak boleh kosong.'},
+          isNumeric: {args:true,msg:'Stok harus berupa angka.'}
         }
     },
     sifat: {

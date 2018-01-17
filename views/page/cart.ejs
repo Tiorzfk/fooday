@@ -43,7 +43,7 @@
 						<ul class="user_info">
               <p id="alamat">Jln.Citepus 3 no.38 RT/RW 10/10 Kelurahan Pajajaran Kecamatan Cicendo Kota Bandung</p>
 						</ul>
-						<a class="btn btn-default update" href="">Ganti Alamat</a>
+						<a class="btn btn-default update" href="#">Ganti Alamat</a>
 					</div>
 				</div>
 				<div class="col-sm-6">
@@ -52,8 +52,8 @@
 							<li>Biaya Pengiriman <span>Gratis</span></li>
 							<li>Total Pembayaran <span id="total_pembayaran">Rp 70.1300</span></li>
 						</ul>
-							<a class="btn btn-default update" href="">Lainnya</a>
-							<a id="bayar" class="btn btn-default check_out">Bayar</a>
+							<a class="btn btn-default update" href="/menu">Pesan Menu Lain</a>
+							<a id="bayar" class="btn btn-default check_out">Selesai</a>
 					</div>
 				</div>
 			</div>
@@ -138,7 +138,7 @@
           <td class="cart_quantity">
             <div class="cart_quantity_button">
               <a class="cart_quantity_up" href=""> + </a>
-              <input class="cart_quantity_input" index="${index}" id="jml${index}" type="number" style="width:50px" name="quantity" value="${item.jumlah}" autocomplete="off" size="2">
+              <input class="cart_quantity_input" index="${index}" id="jml${index}" type="number" style="width:50px" name="quantity" value="${item.jumlah}">
               <a class="cart_quantity_down" href=""> - </a>
             </div>
           </td>
@@ -175,6 +175,7 @@
 
         }).error(function(response){
           console.log(response);
+					window.location.href = '/cart';
         })
         console.log('asd');
       });
@@ -210,6 +211,10 @@
       }).on('change','.cart_quantity_input', function() {
 				var index = $(this).attr('index');
 				var jml = $(`#jml${index}`).val();
+				if(jml >= 100) {
+					jml = 100;
+					$(`#jml${index}`).val(100);
+				}
 				// console.log(jml);
 				var dataHistory = sessionStorage.getItem('historyDataPesan');
 				var dataHistoryJson = JSON.parse(dataHistory);

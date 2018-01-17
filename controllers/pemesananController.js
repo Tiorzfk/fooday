@@ -59,10 +59,10 @@ module.exports = {
 
     var dataPesanMenu = [];
     for (var i = 0; i < id_menu.length; i++) {
-      dataPesanMenu.push({id_pesan_menu:id_pesan,id_menu:id_menu[i]});
+      dataPesanMenu.push({id_pesan_menu:id_pesan,id_menu:id_menu[i],jumlah:1});
     }
 
-    var dataPemesanan = {id_pesan:id_pesan,id_user:'2',status:'walkin',total_harga:harga};
+    var dataPemesanan = {id_pesan:id_pesan,id_user:'5',status:'walkin',total_harga:harga};
     await pemesanan.simpanPemesanan(dataPemesanan, (err,res) => {
       if(err) {
         ctx.flash('msg', err);
@@ -97,21 +97,43 @@ module.exports = {
       }
     });
 
-    await ctx.render('admin/pemesanan/edit.ejs',{'dataLogin':dataLogin,'msg': msg, 'data' : data[0]});
+    var dataMenu = [];
+    await menu.list((err,res) => {
+      if(err)
+        ctx.body = err;
+
+      dataMenu.push(res);
+    });
+
+    await ctx.render('admin/pemesanan/edit.ejs',{'dataMenu':dataMenu[0],'dataLogin':dataLogin,'msg': msg, 'data' : data[0]});
   },
 
   simpanEdit : async (ctx,next) => {
-    await pemesanan.simpanEdit(ctx.request.body, (err,res) => {
+    var id_pesan = ctx.request.body.id_pesan;
+    var harga = ctx.request.body.harga;
+    var id_menu = ctx.request.body.id_menu.split(',');
+
+    var dataPesanMenu = [];
+    for (var i = 0; i < id_menu.length; i++) {
+      dataPesanMenu.push({id_pesan_menu:id_pesan,id_menu:id_menu[i],jumlah:1});
+    }
+
+    var dataPemesanan = {id_pesan:id_pesan,id_user:'2',status:'walkin',total_harga:harga};
+    await pemesanan.simpanEdit(dataPemesanan, (err,res) => {
       if(err) {
-        var errMsg = "";
-        err.errors.forEach((data) => {
-          errMsg += `${data.message} </br>`;
-        });
-        ctx.flash('msg', errMsg);
+        ctx.flash('msg', err);
         ctx.redirect('/admin/pemesanan/edit/'+ctx.params.id);
       }else{
         ctx.flash('msg', 'pemesanan Berhasil Diubah');
         ctx.redirect('/admin/pemesanan/edit/'+ctx.params.id);
+      }
+    });
+
+    await pemesanan.simpanEditMenu(dataPesanMenu, (err,res) => {
+      if(err) {
+        ctx.body = err;
+      }else{
+        ctx.body = res;
       }
     });
   },

@@ -3,6 +3,7 @@ var pesanMenu = require('../models/pesan_menu');
 var pesanOnline = require('../models/pemesanan_online');
 var menu = require('../models/menu');
 var user = require('../models/user');
+var statusPesanan = require('../models/status_pesanan');
 var shortid = require('shortid');
 
 module.exports = {
@@ -25,6 +26,20 @@ module.exports = {
   },
 
   simpanMenu: async (data,callback) => {
+    await pesanMenu.bulkCreate(data).then(res => {
+      callback(null,res);
+    })
+    .catch(error => {
+        callback(error,null);
+    });
+  },
+
+  simpanEditMenu: async (data,callback) => {
+    await pesanMenu.destroy({
+      where: {
+        id_pesan_menu: data[0].id_pesan_menu
+      }
+    });
     await pesanMenu.bulkCreate(data).then(res => {
       callback(null,res);
     })
@@ -95,7 +110,7 @@ module.exports = {
   simpanEdit: async (data,callback) => {
     await pemesanan.update(data,{
       where: {
-        id_pemesanan: data.id_pemesanan
+        id_pemesanan: data.id_pesan
       }
     }).then(res => {
       callback(null,res);

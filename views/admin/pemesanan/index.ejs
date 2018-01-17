@@ -53,8 +53,11 @@
                                 <% if(data.status =='online') {%>
                                   <a href="/admin/pemesanan/detail/<%=data.id_pesan%>" class="waves-effect waves-light btn default m-b-xs"> Lihat Detail </a>
                                 <% } %>
-                                <% if(dataLogin.jenis_user =='kasir') {%>
+                                <% if( (dataLogin.jenis_user =='kasir') && (data.status =='online')) {%>
                                   <a href="/admin/pemesanan/edit/<%=data.id_pesan%>" class="waves-effect waves-light btn default m-b-xs"> Edit </a>
+                                <% } %>
+                                <% if(dataLogin.jenis_user =='karyawan') {%>
+                                  <a href="/admin/pemesanan/gantiStatus/<%=data.id_pesan%>" class="waves-effect waves-light btn default m-b-xs"> Pemesanan siap </a>
                                 <% } %>
                                 <!-- <a onclick="return confirm('Apakah Anda Yakin ?')" href="/admin/menu/delete/<%=data.id_pesan%>" class="waves-effect waves-light btn pink m-b-xs"> Hapus </a></td> -->
                           </tr>

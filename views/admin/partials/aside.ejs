@@ -31,16 +31,9 @@
             <a href="/admin/menu" class="collapsible-header waves-effect waves-grey"><i class="material-icons">developer_board</i>Management Menu</a>
         </li>
         <% }  %>
-        <% if((dataLogin.jenis_user == 'kasir') || (dataLogin.jenis_user == 'owner')) {%>
         <li class="no-padding">
             <a href="/admin/pemesanan" class="collapsible-header waves-effect waves-grey"><i class="material-icons">subtitles</i>Pemesanan</a>
         </li>
-        <% }  %>
-        <% if(dataLogin.jenis_user == 'karyawan') {%>
-        <li class="no-padding">
-            <a href="/admin/status-pesanan" class="collapsible-header waves-effect waves-grey"><i class="material-icons">subtitles</i>Status Pesanan</a>
-        </li>
-        <% }  %>
     </ul>
     </div>
 </aside>

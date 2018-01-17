@@ -17,9 +17,9 @@ module.exports = {
   },
 
   tambah : async (ctx,next) => {
-    // var dataLogin = ctx.session.dataLogin;
+    var dataLogin = ctx.session.dataLogin;
     var msg = ctx.flash('msg') || '';
-    await ctx.render('admin/menu/tambah.ejs',{'msg' : msg});
+    await ctx.render('admin/menu/tambah.ejs',{'dataLogin':dataLogin,'msg' : msg});
     // ctx.body = ctx.flash('error');
   },
 

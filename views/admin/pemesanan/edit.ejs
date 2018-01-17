@@ -1,101 +1,34 @@
 <% include ../partials/header %>
-
+<link href="/backend/assets/plugins/select2/css/select2.css" rel="stylesheet">
 <% include ../partials/aside %>
 
 <main class="mn-inner">
     <div class="row">
         <div class="col s12">
-            <div class="page-title">Form Tambah Menu</div>
+            <div class="page-title">Form Edit Pemesanan</div>
         </div>
         <div class="col s6 offset-s3">
             <div class="card">
                 <div class="card-content">
-                    <span class="card-title">Input Menu</span><br>
+                    <span class="card-title">Edit Pemesanan</span><br>
                     <div class="row">
                         <form action="" method="post" class="col s12">
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input placeholder="Masukan Nama Menu" name="nama" type="text" value="<%= data.nama %>">
-                                    <input name="id_menu" type="hidden" value="<%= data.id_menu %>">
-                                    <label for="first_name">Nama Menu</label>
+                                  <span class="card-title">Pilih Menu Pesanan</span>
+                                  <select class="js-states browser-default" multiple="multiple" tabindex="-1" style="width: 100%" id="menu">
+                                    <% dataMenu.forEach(function(data) { %>
+                                        <option value="<%= data.id_menu %>"><%= data.nama %></option>
+                                    <% }); %>
+                                  </select>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input placeholder="Masukan Harga Menu" name="harga" type="text" value="<%= data.harga %>">
-                                    <label for="first_name">Harga</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input placeholder="Masukan Stok Menu yang Tersedia" name="stok" type="text"  value="<%= data.stok %>">
-                                    <label for="first_name">Stok</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <select name="sifat">
-                                        <option value="" readonly>Choose your option</option>
-                                        <% if(data.sifat == 'T') {%>
-                                          <option value="T" selected>Titipan</option>
-                                          <option value="BT">Bukan Titipan</option>
-                                        <% }else{ %>
-                                          <option value="T" >Titipan</option>
-                                          <option value="BT" selected>Bukan Titipan</option>
-                                        <% } %>
-                                    </select>
-                                    <label>Sifat</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <select name="jenis_menu">
-                                        <option value="" readonly>Choose your option</option>
-                                        <% if(data.jenis_menu == 'sayur') {%>
-                                          <option value="sayur" selected>Sayur</option>
-                                          <option value="daging">Daging</option>
-                                          <option value="gorengan">Gorengan</option>
-                                          <option value="buah">Buah</option>
-                                          <option value="makanan_ringan">Makanan Ringan</option>
-                                          <option value="minuman">Minuman</option>
-                                        <% }else if(data.jenis_menu == 'daging'){ %>
-                                          <option value="sayur">Sayur</option>
-                                          <option value="daging" selected>Daging</option>
-                                          <option value="gorengan">Gorengan</option>
-                                          <option value="buah">Buah</option>
-                                          <option value="makanan_ringan">Makanan Ringan</option>
-                                          <option value="minuman">Minuman</option>
-                                        <% }else if (data.jenis_menu == 'gorengan'){ %>
-                                          <option value="sayur">Sayur</option>
-                                          <option value="daging">Daging</option>
-                                          <option value="gorengan" selected>Gorengan</option>
-                                          <option value="buah">Buah</option>
-                                          <option value="makanan_ringan">Makanan Ringan</option>
-                                          <option value="minuman">Minuman</option>
-                                        <% }else if (data.jenis_menu == 'buah'){ %>
-                                          <option value="sayur">Sayur</option>
-                                          <option value="daging">Daging</option>
-                                          <option value="gorengan">Gorengan</option>
-                                          <option value="buah" selected>Buah</option>
-                                          <option value="makanan_ringan">Makanan Ringan</option>
-                                          <option value="minuman">Minuman</option>
-                                        <% }else if (data.jenis_menu == 'makanan_ringan'){ %>
-                                          <option value="sayur">Sayur</option>
-                                          <option value="daging">Daging</option>
-                                          <option value="gorengan">Gorengan</option>
-                                          <option value="buah">Buah</option>
-                                          <option value="makanan_ringan" selected>Makanan Ringan</option>
-                                          <option value="minuman">Minuman</option>
-                                        <% }else { %>
-                                          <option value="sayur">Sayur</option>
-                                          <option value="daging">Daging</option>
-                                          <option value="gorengan">Gorengan</option>
-                                          <option value="buah">Buah</option>
-                                          <option value="makanan_ringan" selected>Makanan Ringan</option>
-                                          <option value="minuman" selected>Minuman</option>
-                                        <% } %>
-                                    </select>
-                                    <label>Jenis Makanan</label>
+                                  <input type="hidden" id="id_menu" name="id_menu" value="">
+                                  <input type="hidden" id="id_pesan" name="id_pesan" value="<%=data.id_pesan%>">
+                                  <input type="hidden" id="harga" name="harga" value="">
+                                  <span class="card-title"><b>Total Harga</b> : RP. <span id="total_harga"></span></span>
                                 </div>
                             </div>
                             <div class="row">
@@ -114,9 +47,28 @@
 <% include ../partials/footer %>
 <script src="/backend/assets/plugins/google-code-prettify/prettify.js"></script>
 <script src="/backend/assets/js/pages/dialogs.js"></script>
+<script src="/backend/assets/plugins/select2/js/select2.min.js"></script>
+<script src="/backend/assets/js/pages/form-select2.js"></script>
 <script type="text/javascript">
     var msg = '<%- msg %>';
     if(msg) {
       Materialize.toast(msg, 5000);
     }
+
+    $("#menu").change(function() {
+      var id = $(this).val();
+      console.log({id_menu:id});
+      $.ajax({
+          url: "/admin/pesan-menu",
+          method: "POST",
+          data:{id_menu:id}
+      }).done(function(data) {
+        console.log(data);
+        $("#total_harga").html(data.result);
+        $("#id_menu").val(id);
+        $("#harga").val(data.result);
+      }).error(function(err) {
+        console.log(err);
+      });
+    });
 </script>

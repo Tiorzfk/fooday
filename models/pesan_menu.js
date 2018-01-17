@@ -22,7 +22,8 @@ var pesanMenuScheme = {
       allowNull: false,
       validate : {
         notEmpty: {args:true,msg:'Jumlah tidak boleh kosong.'},
-        max: {args:true,msg:'Jumlah tidak boleh kosong.'}
+        max: {args:100,msg:'Jumlah tidak boleh kosong.'},
+        isNumeric: {args:true,msg:'Jumlah harus berupa angka.'}
       }
     }
 };

@@ -52,7 +52,7 @@ var user = require('./routes/pemesanan')(router);
 require('./routes/page/menu')(routerPage);
 require('./routes/page/auth')(routerPage);
 
-var port = process.env.PORT;
+var port = '8000';
 
 // BodyParser
 app.use(bodyParser());
